@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>House Rules - Tigerbay</title>
+  <link rel="stylesheet" href="./assets/css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&family=Forum&display=swap"
+    rel="stylesheet" />
+
+  <style>
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      background-color: #0d0d0d;
+      color: white;
+    }
+
+    main {
+      flex: 1;
+    }
+
+    .header {
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 999;
+      background-color: #0d0d0d;
+    }
+
+    .house-rules-section {
+      padding-block: 160px 80px;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    .house-rules-section h2 {
+      font-size: 40px;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
+    .house-rules-section ol {
+      padding-left: 1.2rem;
+    }
+
+    .house-rules-section ol>li {
+      margin-bottom: 1.5rem;
+    }
+
+    .house-rules-section strong {
+      color: #e63946;
+    }
+
+    .house-rules-section ul {
+      margin-top: 0.5rem;
+      margin-bottom: 1rem;
+      padding-left: 1.2rem;
+    }
+
+    .house-rules-section li ul {
+      list-style-type: disc;
+    }
+
+    .house-rules-section li li {
+      margin-bottom: 0.4rem;
+    }
+
+    footer.footer {
+      padding: 40px 0;
+      background-image: url('./assets/images/footer-bg.jpg');
+      background-size: cover;
+      background-position: center;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header class="header" data-header>
+    <div class="container">
+      <a href="#" class="logo"></a>
+      <nav class="navbar" data-navbar>
+        <button class="close-btn" aria-label="close menu" data-nav-toggler>
+          <ion-icon name="close-outline" aria-hidden="true"></ion-icon>
+        </button>
+        <a href="#" class="logo">
+          <img src="https://res.cloudinary.com/dgpuqdwgu/image/upload/v1750694125/ChatGPT_Image_Jun_23_2025_04_55_09_PM_oqyhdy.png" width="160" height="50" alt="Tigerbay Logo" />
+        </a>
+        <ul class="navbar-list">
+          <li class="navbar-item"><a href="index.html" class="navbar-link hover-underline"><span
+                class="span">Home</span></a></li>
+          <li class="navbar-item"><a href="reservations.html" class="navbar-link hover-underline"><span
+                class="span">Reservations</span></a></li>
+          <li class="navbar-item"><a href="menus.html" class="navbar-link hover-underline"><span
+                class="span">Menus</span></a></li>
+          <li class="navbar-item dropdown">
+            <a href="#" class="navbar-link hover-underline">
+              <div class="separator"></div>
+              <span class="span">Branches</span>
+            </a>
+            <ul class="dropdown-menu">
+              <li><a href="https://www.carltonlounge.co.uk/" target="_blank">Kingsbury</a></li>
+              <li><a href="https://www.sherekhanrestaurant.com/" target="_blank">Enfield</a></li>
+            </ul>
+          </li>
+          <li class="navbar-item"><a href="whatson.html" class="navbar-link hover-underline"><span class="span">What’s
+                On</span></a></li>
+          <li class="navbar-item"><a href="contact.html" class="navbar-link hover-underline"><span
+                class="span">Contact</span></a></li>
+          <li class="navbar-item"><a href="houserules.html" class="navbar-link hover-underline active"><span
+                class="span">House Rules</span></a></li>
+        </ul>
+        <div class="text-center">
+          <p class="headline-1 navbar-title">Visit Us</p>
+          <address class="body-4">10 Hanger Ln,<br />London W5 1ET</address>
+          <!-- <p class="body-4 navbar-text">Open: 8:00 am - 10:00 pm</p> -->
+          <a href="mailto:hangerlane@tigerbay.co.uk" class="body-4 sidebar-link">hangerlane@tigerbay.co.uk</a>
+          <div class="separator"></div>
+          <p class="contact-label">Booking Request</p>
+          <a href="tel:+11234567890" class="body-1 contact-number hover-underline">+1 123 456 7890</a>
+        </div>
+      </nav>
+      <a href="reservations.html" class="btn btn-secondary">
+        <span class="text text-1">Find A Table</span>
+        <span class="text text-2" aria-hidden="true">Find A Table</span>
+      </a>
+      <button class="nav-open-btn" aria-label="open menu" data-nav-toggler>
+        <span class="line line-1"></span>
+        <span class="line line-2"></span>
+        <span class="line line-3"></span>
+      </button>
+      <div class="overlay" data-nav-toggler data-overlay></div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main>
+    <section class="section" style="padding-block: 100px; background-color: #111;">
+      <div class="container">
+        <br><br>
+        <h2 class="headline-1 section-title text-center" style="margin-bottom: 40px;">House Rules</h2>
+
+        <ol style="color: #fff; padding-left: 20px; font-family: 'DM Sans', sans-serif;">
+          <li style="margin-bottom: 20px;">
+            <strong style="color: #ff5a5f;">1. Entry & Security Checks</strong>
+            <ul style="list-style-type: disc; margin-left: 20px;">
+              <li>All customers will be searched upon entry using metal detector wands.</li>
+              <li>Any prohibited items found will result in denied entry.</li>
+              <li><strong>Last entry times:</strong>
+                <ul style="margin-left: 20px;">
+                  <li><strong>Sunday to Thursday:</strong> 01:15 AM</li>
+                  <li><strong>Friday & Saturday:</strong> 02:15 AM</li>
+                </ul>
+              </li>
+              <li><strong>No re-entry</strong> once you have left the venue.</li>
+            </ul>
+          </li>
+
+          <li style="margin-bottom: 20px;">
+            <strong style="color: #ff5a5f;">2. Age & ID Verification</strong>
+            <ul style="list-style-type: disc; margin-left: 20px;">
+              <li>We are <strong>strictly an over-18 venue</strong> – proof of age will be required.</li>
+              <li>After 10 PM, all customers must present physical valid photo identification.</li>
+              <li>We operate <strong>Challenge 25</strong> – if you appear under 25, you must provide valid ID.</li>
+              <li>IDs will be scanned through our <strong>ClubScan</strong> system for verification.</li>
+            </ul>
+          </li>
+
+          <li style="margin-bottom: 20px;">
+            <strong style="color: #ff5a5f;">3. Zero Tolerance Policy</strong>
+            <ul style="list-style-type: disc; margin-left: 20px;">
+              <li>We have a <strong>strict zero-tolerance policy on drugs</strong>.</li>
+              <li>Any drug-related activity or possession will result in immediate removal and <strong>reporting to the
+                  relevant authorities</strong>.</li>
+              <li><strong>Aggressive or anti-social behaviour</strong> will result in removal and a permanent ban on
+                future entry.</li>
+            </ul>
+          </li>
+
+          <li style="margin-bottom: 20px;">
+            <strong style="color: #ff5a5f;">4. CCTV Monitoring & Security</strong>
+            <ul style="list-style-type: disc; margin-left: 20px;">
+              <li>CCTV is in operation throughout the premises for the safety of customers and staff.</li>
+              <li>Footage may be shared with the authorities upon request.</li>
+            </ul>
+          </li>
+
+          <li style="margin-bottom: 20px;">
+            <strong style="color: #ff5a5f;">5. Conduct & Respect for Others</strong>
+            <ul style="list-style-type: disc; margin-left: 20px;">
+              <li><strong>Be kind and polite</strong> to all staff and fellow customers.</li>
+              <li>Customers must leave in an <strong>orderly manner</strong>, showing respect for our neighbours and
+                local community.</li>
+              <li>Management may <strong>ask customers to leave earlier than closing time</strong> for crowd control and
+                neighbourhood considerations.</li>
+              <li><strong>Loud, disruptive or unruly behaviour</strong> in the venue will not be tolerated.</li>
+            </ul>
+          </li>
+
+          <li style="margin-bottom: 20px;">
+            <strong style="color: #ff5a5f;">6. Dress Code & Venue Behaviour</strong>
+            <ul style="list-style-type: disc; margin-left: 20px;">
+              <li>Smart casual attire is required; no sportswear or excessively casual clothing.</li>
+              <li>Loud, disruptive, or unruly behaviour will not be tolerated.</li>
+            </ul>
+          </li>
+
+          <li style="margin-bottom: 20px;">
+            <strong style="color: #ff5a5f;">7. Alcohol & Substance Regulations</strong>
+            <ul style="list-style-type: disc; margin-left: 20px;">
+              <li>Bringing outside food or drink is prohibited.</li>
+              <li>Drug use and possession of illegal substances are strictly banned.</li>
+            </ul>
+          </li>
+
+          <li style="margin-bottom: 20px;">
+            <strong style="color: #ff5a5f;">8. Weapons & Dangerous Items</strong>
+            <ul style="list-style-type: disc; margin-left: 20px;">
+              <li>Possession of weapons or hazardous items is strictly prohibited.</li>
+            </ul>
+          </li>
+
+          <li style="margin-bottom: 20px;">
+            <strong style="color: #ff5a5f;">9. 90 Minutes Policy</strong>
+            <ul style="list-style-type: disc; margin-left: 20px;">
+              <li>During busy periods, a 90-minute seating policy applies. We will do our best to accommodate you where
+                possible.</li>
+            </ul>
+          </li>
+
+          <li style="margin-bottom: 20px;">
+            <strong style="color: #ff5a5f;">10. Management & Security Rights</strong>
+            <ul style="list-style-type: disc; margin-left: 20px;">
+              <li>Management reserves the right to refuse entry or service at their discretion.</li>
+              <li>Security personnel have full authority to enforce all house rules.</li>
+            </ul>
+          </li>
+
+          <li style="margin-bottom: 20px;">
+            <strong style="color: #ff5a5f;">11. Final Notice</strong>
+            <ul style="list-style-type: disc; margin-left: 20px;">
+              <li>If you do not wish to abide by our house rules, please do not enter.</li>
+            </ul>
+          </li>
+        </ol>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer section has-bg-image text-center">
+    <p class="copyright">&copy; 2025 Tigerbay Shisha. All Rights Reserved.</p>
+  </footer>
+
+  <a href="#top" class="back-top-btn active" aria-label="back to top">
+    <ion-icon name="chevron-up"></ion-icon>
+  </a>
+
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+  <script src="./assets/js/script.js"></script>
+
+</body>
+
+</html>

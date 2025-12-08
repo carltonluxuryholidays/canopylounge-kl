@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Menus - Namour</title>
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&family=Forum&display=swap"
+        rel="stylesheet">
+    <style>
+        /* Fix grid layout spacing */
+        /* .grid-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(285px, 1fr));
+            gap: 3rem;
+            justify-items: center;
+        } */
+
+        header.header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 999;
+        }
+
+        body {
+            padding-top: 100px;
+            /* Adjust this value based on header height */
+        }
+
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            height: auto;
+        }
+
+        .shape {
+            max-height: 100vh;
+            overflow: hidden;
+            display: block;
+            pointer-events: none;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        footer.footer {
+            margin-top: auto;
+        }
+
+
+        /* Remove extra scroll on desktop */
+        /* body,
+        html {
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        .shape {
+            max-height: 100vh;
+            overflow: hidden;
+            display: block;
+        } */
+
+        /* Ensure section height doesn't extend beyond content */
+        .service {
+            padding-bottom: 4rem;
+        }
+
+        .fixed-size-img {
+            width: 285px;
+            height: 336px;
+            object-fit: cover;
+        }
+
+        .fixed-box {
+            width: 285px;
+            height: 336px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .fixed-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* New code */
+        .menu-row {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            /* 4 in a row */
+            gap: 30px;
+            list-style: none;
+            padding: 0;
+            margin: 0 auto;
+            justify-items: center;
+        }
+
+        @media (max-width: 1024px) {
+            .menu-row {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .menu-row {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body id="top">
+    <div class="topbar"
+        style="background-color: black; padding: 8px 0; text-align: center; font-size: 14px; color: #fff;">
+        <div class="container"
+            style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+            <div style="color: #fff;">10 Hanger Ln, London W5 1ET</div>
+            <div style="color: #fff; display: flex; gap: 15px; align-items: center;">
+                <span><ion-icon name="call-outline" style="vertical-align: middle;"></ion-icon> +1 123 456 7890</span>
+                <span><ion-icon name="mail-outline" style="vertical-align: middle;"></ion-icon> Namour.co.uk</span>
+            </div>
+        </div>
+    </div>
+
+    <header class="header" data-header>
+        <div class="container">
+
+            <a href="#" class="logo">
+                <img src="https://res.cloudinary.com/dgpuqdwgu/image/upload/v1750694125/ChatGPT_Image_Jun_23_2025_04_55_09_PM_oqyhdy.png"
+                    width="230" height="400" alt="Namour - Home">
+            </a>
+
+            <nav class="navbar" data-navbar>
+
+                <button class="close-btn" aria-label="close menu" data-nav-toggler>
+                    <ion-icon name="close-outline" aria-hidden="true"></ion-icon>
+                </button>
+
+                <a href="#" class="logo">
+                    <img src="https://res.cloudinary.com/dgpuqdwgu/image/upload/v1750694125/ChatGPT_Image_Jun_23_2025_04_55_09_PM_oqyhdy.png"
+                        width="160" height="150" alt="Namour - Home">
+                </a>
+
+                <ul class="navbar-list">
+
+                    <li class="navbar-item"><a href="index.html" class="navbar-link hover-underline">
+                            <div class="separator"></div><span class="span">Home</span>
+                        </a></li>
+
+                    <li class="navbar-item"><a href="reservations.html" class="navbar-link hover-underline">
+                            <div class="separator"></div><span class="span">Reservations</span>
+                        </a></li>
+
+                    <li class="navbar-item"><a href="menus.html" class="navbar-link hover-underline">
+                            <div class="separator"></div><span class="span">Menus</span>
+                        </a></li>
+
+                    <!-- <li class="navbar-item dropdown">
+                        <a href="#" class="navbar-link hover-underline">
+                            <div class="separator"></div><span class="span">Branches</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="https://www.carltonlounge.co.uk/" target="_blank">Kingsbury</a></li>
+                            <li><a href="https://www.sherekhanrestaurant.com/" target="_blank">Enfield</a></li>
+                        </ul>
+                    </li> -->
+
+                    <li class="navbar-item"><a href="whatson.html" class="navbar-link hover-underline">
+                            <div class="separator"></div><span class="span">What’s New</span>
+                        </a></li>
+
+                    <li class="navbar-item"><a href="contact.html" class="navbar-link hover-underline">
+                            <div class="separator"></div><span class="span">Contact</span>
+                        </a></li>
+
+                    <!-- <li class="navbar-item"><a href="houserules.html" class="navbar-link hover-underline">
+                            <div class="separator"></div><span class="span">House Rules class = id.me</span>
+                        </a></li> -->
+
+                </ul>
+
+                <div class="text-center">
+                    <p class="headline-1 navbar-title">Visit Us</p>
+                    <address class="body-4">
+                        10 Hanger Ln,<br>London W5 1ET
+                    </address>
+                    <!-- <p class="body-4 navbar-text">Open: 9.30 am - 2.30pm</p> -->
+                    <a href="mailto:booking@grilli.com" class="body-4 sidebar-link">booking@namour.co.uk</a>
+                    <div class="separator"></div>
+                    <p class="contact-label">Booking Request</p>
+                    <a href="tel:+88123123456" class="body-1 contact-number hover-underline">
+                        +44-123-123456
+                    </a>
+                </div>
+
+            </nav>
+
+            <a href="reservations.html" class="btn btn-secondary">
+                <span class="text text-1">Find A Table</span>
+                <span class="text text-2" aria-hidden="true">Find A Table</span>
+            </a>
+
+            <button class="nav-open-btn" aria-label="open menu" data-nav-toggler>
+                <span class="line line-1"></span>
+                <span class="line line-2"></span>
+                <span class="line line-3"></span>
+            </button>
+
+            <div class="overlay" data-nav-toggler data-overlay></div>
+
+        </div>
+    </header>
+
+    <!-- Menu Section -->
+    <section class="section service bg-black-10 text-center" aria-label="service" style="padding-top: 140px;">
+        <div class="container">
+            <br><br>
+            <p class="section-subtitle label-2">MENUS</p>
+            <p class="section-text">
+                Step into a world of flavour, comfort, and great vibes — from premium shisha to
+                mouthwatering food, we bring you the ultimate lounge experience.
+            </p>
+
+            <!-- Dynamic menu container -->
+            <ul class="menu-row" id="menuContainer"></ul>
+
+            <img src="./assets/images/shape-1.png" width="246" height="412" loading="lazy" alt="shape"
+                class="shape shape-1 move-anim">
+            <img src="./assets/images/shape-2.png" width="343" height="345" loading="lazy" alt="shape"
+                class="shape shape-2 move-anim">
+        </div>
+    </section>
+
+    <!-- Delivery Partners Section  -->
+    <section class="section text-center" style="padding: 3rem 1rem; background-color: #0d0d0d;">
+        <div class="container">
+            <h2 class="headline-1 section-title" style="margin-bottom: 2rem;">Our Delivery Partner</h2>
+            <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem;">
+                <img src="https://www.tigerbayshisha.co.uk/wp-content/uploads/2023/05/delivery-partner1.jpg"
+                    alt="Uber Eats" style="width: 150px; height: auto;" />
+                <img src="https://www.tigerbayshisha.co.uk/wp-content/uploads/2023/05/delivery-partner2.jpg"
+                    alt="Deliveroo" style="width: 150px; height: auto;" />
+                <img src="https://www.tigerbayshisha.co.uk/wp-content/uploads/2023/05/delivery-partner3.jpg"
+                    alt="Just Eat" style="width: 150px; height: auto;" />
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Footer -->
+    <footer class="footer section has-bg-image text-center"
+        style="background-image: url('./assets/images/footer-bg.jpg'); padding: 40px 0;">
+        <p class="copyright">
+            &copy; 2025 Tigerbay Shisha. All Rights Reserved.
+        </p>
+        </div>
+    </footer>
+
+    <a href="#top" class="back-top-btn active" aria-label="back to top"><ion-icon name="chevron-up"></ion-icon></a>
+
+    <!-- JS + Ionicons -->
+    <script src="./assets/js/script.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+    <!-- Scroll Fix -->
+    <script>
+        const API_BASE = location.hostname.includes("localhost")
+            ? "http://localhost:3000"
+            : "https://namour-backend.onrender.com";
+
+        fetch(`${API_BASE}/data/menus.json?ts=` + new Date().getTime())
+            .then(res => res.json())
+            .then(menus => {
+                const container = document.getElementById('menuContainer');
+                container.innerHTML = ""; // Clear previous content
+                menus.forEach(menu => {
+                    const li = document.createElement('li');
+                    li.innerHTML = `
+  <div class="service-card">
+    <a href="${menu.pdfLink}" class="has-before hover:shine" target="_blank">
+      <figure class="card-banner img-holder fixed-box">
+        <img src="${menu.image}" loading="lazy" alt="${menu.title}" class="img-cover" />
+      </figure>
+    </a>
+    <div class="card-content">
+      <h3 class="title-4 card-title">
+        <a href="#" style="color: white; font-size: 28px;">${menu.title}</a>
+      </h3>
+    </div>
+  </div>
+`;
+
+                    container.appendChild(li);
+                });
+            })
+            .catch(err => {
+                console.error("❌ Failed to load menus:", err);
+            });
+    </script>
+</body>
+
+</html>

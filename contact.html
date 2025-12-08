@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact - Namour</title>
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&family=Forum&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <style>
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow-x: hidden;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+        }
+
+        main {
+            flex: 1 0 auto;
+        }
+
+        footer.footer {
+            flex-shrink: 0;
+        }
+
+        .contact {
+            padding-top: 140px;
+            padding-bottom: 60px;
+        }
+
+        .desktop-gap-fix {
+            height: 0;
+            background-color: transparent;
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .desktop-gap-fix {
+                display: block;
+                height: 55px;
+                background-color: #000;
+            }
+        }
+    </style>
+</head>
+
+<body id="top">
+    <div class="topbar"
+        style="background-color: black; padding: 8px 0; text-align: center; font-size: 14px; color: #fff;">
+        <div class="container"
+            style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+            <div style="color: #fff;">10 Hanger Ln, London W5 1ET</div>
+            <div style="color: #fff; display: flex; align-items: center; gap: 10px;">
+                <ion-icon name="call-outline" style="vertical-align: middle;"></ion-icon>
+                <span>+1 123 456 7890</span>
+
+                <span style="color: #d2b066; font-size: 18px;">◆</span> <!-- Diamond icon -->
+
+                <ion-icon name="mail-outline" style="vertical-align: middle;"></ion-icon>
+                <span>Namour.co.uk</span>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- HEADER -->
+    <header class="header" data-header>
+        <div class="container">
+
+            <div class="mobile-header-wrapper">
+                <a href="#" class="logo">
+                    <img src="https://res.cloudinary.com/dgpuqdwgu/image/upload/v1750694125/ChatGPT_Image_Jun_23_2025_04_55_09_PM_oqyhdy.png"
+                        width="230" height="400" alt="Namour - Home">
+                </a>
+
+                <nav class="navbar" data-navbar>
+
+                    <button class="close-btn" aria-label="close menu" data-nav-toggler>
+                        <ion-icon name="close-outline" aria-hidden="true"></ion-icon>
+                    </button>
+
+                    <a href="#" class="logo">
+                        <img src="https://res.cloudinary.com/dgpuqdwgu/image/upload/v1750694125/ChatGPT_Image_Jun_23_2025_04_55_09_PM_oqyhdy.png"
+                            width="160" height="150" alt="Namour - Home">
+                    </a>
+
+                    <ul class="navbar-list">
+
+                        <li class="navbar-item"><a href="index.html" class="navbar-link hover-underline">
+                                <div class="separator"></div><span class="span">Home</span>
+                            </a></li>
+
+                        <li class="navbar-item"><a href="reservations.html" class="navbar-link hover-underline">
+                                <div class="separator"></div><span class="span">Reservations</span>
+                            </a></li>
+
+                        <li class="navbar-item">
+                            <a href="index.html#menus" class="navbar-link hover-underline">
+                                <div class="separator"></div>
+                                <span class="span">Menus</span>
+                            </a>
+                        </li>
+
+
+                        <li class="navbar-item"><a href="contact.html" class="navbar-link hover-underline">
+                                <div class="separator"></div><span class="span">Contact Us</span>
+                            </a></li>
+
+                        <!-- <li class="navbar-item"><a href="houserules.html" class="navbar-link hover-underline">
+                            <div class="separator"></div><span class="span">House Rules</span>
+                        </a></li> -->
+
+                    </ul>
+
+                    <div class="text-center">
+                        <p class="headline-1 navbar-title">Visit Us</p>
+                        <address class="body-4">
+                            10 Hanger Ln,<br>London W5 1ET
+                        </address>
+                        <!-- <p class="body-4 navbar-text">Open: 9.30 am - 2.30pm</p> -->
+                        <a href="mailto:bookings@tigerbayshisha.co.uk"
+                            class="body-4 sidebar-link">bookings@tigerbayshisha.co.uk</a>
+                        <div class="separator"></div>
+                        <p class="contact-label">Booking Request</p>
+                        <a href="tel:+442039627600" class="body-1 contact-number hover-underline">
+                            +44-20396-27600
+                        </a>
+                    </div>
+
+                </nav>
+
+                <a href="reservations.html" class="btn btn-secondary">
+                    <span class="text text-1">Find A Table</span>
+                    <span class="text text-2" aria-hidden="true">Find A Table</span>
+                </a>
+
+                <button class="nav-open-btn" aria-label="open menu" data-nav-toggler>
+                    <span class="line line-1"></span>
+                    <span class="line line-2"></span>
+                    <span class="line line-3"></span>
+                </button>
+
+                <div class="overlay" data-nav-toggler data-overlay></div>
+
+            </div>
+    </header>
+
+    <!-- CONTACT SECTION -->
+    <!-- <main>
+        <article>
+            <section class="section contact bg-black-10" aria-label="contact">
+                <div class="container"
+                    style="display: flex; flex-wrap: wrap; gap: 4rem; align-items: flex-start; justify-content: center;"> -->
+    <!-- Form -->
+    <!-- <div style="flex: 2; min-width: 280px;">
+                        <br><br>
+                        <h4 class="headline-1 section-title">GET IN TOUCH</h4>
+
+                        <form action="https://formsubmit.co/dips@tigerbayshisha.co.uk" method="POST"
+                            style="display: grid; gap: 1rem;"> -->
+
+    <!-- Prevent spam -->
+    <!-- <input type="hidden" name="_captcha" value="false">
+                            <input type="hidden" name="_subject" value="New Contact Enquiry from Website">
+                            <input type="hidden" name="_template" value="box">
+
+
+                            <input type="text" name="name" class="input-field" placeholder="Your Name *" required />
+                            <input type="email" name="email" class="input-field" placeholder="Your Email *" required />
+                            <input type="tel" name="phone" class="input-field" placeholder="Your Phone *" required />
+                            <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                                <div style="flex: 1; min-width: 150px;">
+                                    <label for="dateFrom" class="body-2" style="color: #fff;">Date</label>
+                                    <input type="text" id="dateFrom" name="date_from" class="input-field" />
+                                </div>
+
+                                
+                            </div>
+                            <select name="subject" class="input-field" required>
+                                <option value="reservation">Reservation</option>
+                                <option value="general">General Inquiry</option>
+                                <option value="feedback">Private Event</option>
+                            </select>
+
+                            <textarea name="message" class="input-field" placeholder="Message..." rows="5"></textarea>
+
+                            <button type="submit" class="btn btn-primary" style="max-width: 220px;">
+                                <span class="text text-1">Send Enquiry</span>
+                                <span class="text text-2" aria-hidden="true">Send Enquiry</span>
+                            </button>
+                        </form>
+                    </div>
+
+                </div>
+            </section>
+        </article>
+    </main> -->
+    <main>
+        <article>
+            <section class="section contact bg-black-10" aria-label="contact"
+                style="background-color: #111; min-height: 500px; padding-bottom: 230px;">
+                <div class="container"
+                    style="max-width: 800px; margin: 0 auto; padding: 4rem 1rem; color: #fff; text-align: center;">
+                    <br><br><h2 class="headline-1 section-title" style="margin-bottom: 3rem;">Get In Touch</h2>
+
+                    <div style="display: flex; flex-direction: column; align-items: center; gap: 2rem;">
+
+                        <div style="display: flex; flex-direction: column; align-items: center; gap: 0.5rem;">
+                            <ion-icon name="location-outline" style="color: #d2b066; font-size: 28px;"></ion-icon>
+                            <span style="font-size: 1.5rem;">10 Hanger Ln, London W5 1ET</span>
+                        </div>
+
+                        <div style="display: flex; flex-direction: column; align-items: center; gap: 0.5rem;">
+                            <ion-icon name="call-outline" style="color: #d2b066; font-size: 28px;"></ion-icon>
+                            <a href="tel:+441234567890"
+                                style="font-size: 1.3rem; color: #d2b066; text-decoration: none;">+44 0203 962 7600</a>
+                        </div>
+
+                        <div style="display: flex; flex-direction: column; align-items: center; gap: 0.5rem;">
+                            <ion-icon name="mail-outline" style="color: #d2b066; font-size: 28px;"></ion-icon>
+                            <a href="mailto:info@namour.co.uk"
+                                style="font-size: 1.3rem; color: #d2b066; text-decoration: none;">bookings@tigerbayshisha.co.uk</a>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+        </article>
+    </main>
+
+
+    <!-- FOOTER -->
+    <footer class="footer section has-bg-image text-center"
+        style="background-image: url('./assets/images/footer-bg.jpg'); padding: 40px 0;">
+        <p class="copyright">
+            &copy; 2025 Namour. All Rights Reserved.
+        </p>
+    </footer>
+
+    <!-- Back to Top  -->
+    <a href="#top" class="back-top-btn active" aria-label="back to top">
+        <ion-icon name="chevron-up"></ion-icon>
+    </a>
+
+    <!-- JS -->
+    <script src="./assets/js/script.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            flatpickr("#dateFrom", {
+                dateFormat: "d/m/Y",
+                defaultDate: "today"
+            });
+
+            flatpickr("#dateTo", {
+                dateFormat: "d/m/Y",
+                defaultDate: "today"
+            });
+        });
+    </script>
+</body>
+
+</html>
