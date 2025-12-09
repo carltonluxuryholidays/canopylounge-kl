@@ -829,6 +829,45 @@ body.nav-active {
   #HEADER
 \*-----------------------------------*/
 
+
+/* mobile logo header */
+.nav-socials {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+.nav-social-link {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gold-crayola);
+  transition: 0.2s ease;
+}
+
+.nav-social-link ion-icon {
+  font-size: 20px;
+}
+
+.nav-social-link img {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+
+.nav-social-link:hover {
+  background: var(--gold-crayola);
+  color: #000;
+  border-color: var(--gold-crayola);
+  transform: translateY(-2px);
+}
+
+
 .header .btn {
   display: none;
 }
@@ -2869,6 +2908,20 @@ textarea.input-field {
     left: 0;
   }
 
+}
+
+/* tripadvisor logo */
+.topbar-item .icon img {
+  display: block;
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+
+.topbar .topbar-item.link {
+  display: flex;
+  align-items: center;
+  gap: 5px;
 }
 
 /* bg-canopy video */

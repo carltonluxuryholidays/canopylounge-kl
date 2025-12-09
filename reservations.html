@@ -1,229 +1,702 @@
-<!-- ✅ Your full code with header updated from index.html -->
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Reservations - Namour</title>
-  <link rel="stylesheet" href="./assets/css/style.css" />
+  <title>Book a Table | Canopy Rooftop Bar</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Same fonts + global styles as index.html -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&family=Forum&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./assets/css/style.css">
 
-  <!-- Booking Widget Dark Theme -->
-  <link rel="stylesheet" type="text/css"
-    href="https://onsass.designmynight.com/?theme=dark&body-text-color=%23ffffff&primary-color=%23ffff66&background-color=%23000000" />
-
+  <!-- Page–specific styles -->
   <style>
-    html,
-    body {
-      margin: 0;
-      padding: 0;
-      background-color: #000;
-      color: #fff;
-      font-family: 'DM Sans', sans-serif;
-      overflow-x: hidden;
-      height: auto;
+    :root {
+      --bg-dark: #050509;
+      --accent: #f25b5b;
+      --accent-soft: rgba(242, 91, 91, 0.6);
+      --glass: rgba(10, 10, 16, 0.78);
+      --border-soft: rgba(255, 255, 255, 0.08);
+      --text-main: #ffffff;
+      --text-muted: #c5c5cf;
+      --font-primary: "DM Sans", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-serif: "Forum", "Times New Roman", serif;
+      --radius-lg: 18px;
+      --shadow-soft: 0 18px 45px rgba(0, 0, 0, 0.75);
+      --transition-fast: 180ms ease-out;
     }
 
-    .hero-section {
-      height: 400px;
-      /* Adjustable: Try 350–450px for mobile/responsive */
-      background-image: url('./assets/images/hero-slider-1.jpg');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      overflow-x: hidden;
+      /* font-size still comes from style.css so header matches home */
+    }
+
+    /* Only links inside reservation content get the coral color */
+    .page a,
+    .hours a,
+    .contact-block a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .page a:hover,
+    .hours a:hover,
+    .contact-block a:hover {
+      text-decoration: underline;
+    }
+
+    /* ---------- HERO ---------- */
+
+    .hero {
+      position: relative;
+      height: 80vh;
+      min-height: 520px;
       display: flex;
       align-items: center;
       justify-content: center;
       text-align: center;
-      position: relative;
-      z-index: 1;
-    }
-
-    .hero-section::after {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.4);
-      /* dark overlay so text is readable */
-      z-index: 2;
-    }
-
-    .hero-content {
-      position: relative;
-      z-index: 3;
-      color: white;
-    }
-
-    .hero-content h1 {
-      font-size: 48px;
-      font-family: 'Forum', cursive;
-      margin: 0;
-    }
-
-    .hero-content h3 {
-      font-size: 22px;
-      margin-top: 10px;
-    }
-
-    .section {
-      padding: 40px 20px;
-    }
-
-    .info-box {
-      line-height: 1.6;
-      font-size: 15px;
-    }
-
-    .info-box ul {
-      list-style-type: disc;
-      margin-left: 20px;
-      padding-left: 0;
-    }
-
-    .grid {
-      display: flex;
-      justify-content: center;
-      gap: 30px;
-      flex-wrap: wrap;
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-
-    .calendar-container {
-      background: #000;
-      padding: 10px;
-      width: 300px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px #333;
-      box-sizing: border-box;
-    }
-
-    .info-box {
-      background-color: #111;
-      padding: 20px;
-      border-radius: 10px;
-      max-width: 400px;
-    }
-
-    .info-box h2 {
-      font-size: 22px;
-      margin-top: 0;
-    }
-
-    .info-box a {
-      color: #f44;
-    }
-
-    .btn-link {
-      display: inline-block;
-      margin-top: 15px;
-      margin-right: 10px;
-      padding: 8px 12px;
-      border: 1px solid #fff;
-      color: #fff;
-      text-decoration: none;
-      border-radius: 4px;
-    }
-
-    .btn-link:hover {
-      background-color: #fff;
-      color: #000;
-    }
-
-    .modal {
-      position: fixed;
-      z-index: 1000;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.85);
-      display: none;
-      overflow: auto;
-    }
-
-    .modal-content {
-      background: #1a1a1a;
-      margin: 5% auto;
-      padding: 30px;
-      max-width: 700px;
-      border-radius: 8px;
-      color: #fff;
-      max-height: 90vh;
-      overflow-y: auto;
-    }
-
-    .modal h3 {
-      color: #f44;
-    }
-
-    body.modal-open {
+      color: var(--text-main);
       overflow: hidden;
     }
 
-
-    .close {
-      float: right;
-      font-size: 22px;
-      cursor: pointer;
-    }
-
-    footer.footer {
-      background-image: url('./assets/images/footer-bg.jpg');
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(to bottom, rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.9)),
+        url("https://res.cloudinary.com/dgpuqdwgu/image/upload/v1763390952/canopy-interior-main_o8eywj.png");
       background-size: cover;
+      background-position: center;
+      filter: saturate(1.1);
+      transform: scale(1.02);
+      transform-origin: center;
+      z-index: -2;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top, rgba(242, 91, 91, 0.28), transparent 55%);
+      z-index: -1;
+      opacity: 0.9;
+    }
+
+    .hero-content {
+      max-width: 640px;
+      padding: 0 1.5rem;
+      animation: fadeUp 650ms ease-out;
+    }
+
+    .hero-eyebrow {
+      letter-spacing: 0.35em;
+      font-size: 13px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 1.2rem;
+    }
+
+    .hero-title {
+      font-family: var(--font-serif);
+      font-weight: 600;
+      font-size: 52px;
+      line-height: 1.1;
+      margin-bottom: 0.35rem;
+    }
+
+    .hero-title span.script {
+      font-family: "Dancing Script", cursive;
+      font-size: 64px;
+      color: var(--accent);
+      display: block;
+    }
+
+    .hero-subtitle {
+      font-size: 18px;
+      color: var(--text-muted);
+      max-width: 34rem;
+      margin: 1rem auto 1.9rem;
+      line-height: 1.8;
+    }
+
+    .hero-divider {
+      width: 110px;
+      height: 1px;
+      margin: 0 auto 1.4rem;
+      background: linear-gradient(to right,
+          transparent,
+          var(--accent-soft),
+          transparent);
+      position: relative;
+    }
+
+    .hero-divider::before {
+      content: "✶";
+      position: absolute;
+      inset: -0.9rem 0 0 0;
+      margin: auto;
+      width: fit-content;
+      font-size: 11px;
+      color: var(--accent);
+      background: rgba(0, 0, 0, 0.7);
+      padding: 0.1rem 0.4rem;
+      border-radius: 999px;
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.95rem 2.2rem;
+      background: linear-gradient(120deg, var(--accent), #ff9671);
+      border-radius: 999px;
+      border: 0;
+      cursor: pointer;
+      font-size: 13px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #0a0a10;
+      font-weight: 600;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+    }
+
+    .hero-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 40px rgba(0, 0, 0, 0.9);
+    }
+
+    .hero-cta:active {
+      transform: translateY(0);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.8);
+    }
+
+    .hero-cta span.icon {
+      font-size: 16px;
+    }
+
+    /* ---------- MAIN SECTION ---------- */
+
+    .page {
+      background: radial-gradient(circle at top left, #14141e, #050509);
+      padding: 3rem 1rem 4rem;
+    }
+
+    .page-inner {
+      max-width: 1180px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.3fr);
+      gap: 2.5rem;
+      align-items: flex-start;
+    }
+
+    .card {
+      background: radial-gradient(circle at top, rgba(255, 255, 255, 0.07), transparent 58%),
+        var(--glass);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-soft);
+      box-shadow: var(--shadow-soft);
+      padding: 2.1rem 2.2rem;
+      backdrop-filter: blur(16px);
+    }
+
+    /* LEFT COLUMN – BEFORE YOU RESERVE */
+
+    .reserve-heading {
+      font-family: var(--font-serif);
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      font-size: 16px;
       text-align: center;
-      padding: 40px 0;
+      margin-bottom: 1.6rem;
     }
 
-    .fixed-size-img {
-      width: 285px;
-      height: 336px;
-      object-fit: cover;
+    .reserve-copy {
+      font-size: 15px;
+      color: var(--text-muted);
+      line-height: 1.8;
+      text-align: center;
+      margin-bottom: 1.6rem;
     }
 
-    @media (max-width: 768px) {
-      .grid {
+    .reserve-list {
+      list-style: none;
+      display: grid;
+      gap: 1rem;
+      margin-bottom: 1.8rem;
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+
+    .reserve-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+    }
+
+    .reserve-list span.bullet {
+      width: 22px;
+      height: 22px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      color: var(--accent);
+      flex-shrink: 0;
+      margin-top: 0.1rem;
+    }
+
+    .reserve-note {
+      font-size: 13px;
+      color: var(--text-muted);
+      opacity: 0.9;
+      border-top: 1px dashed rgba(255, 255, 255, 0.16);
+      padding-top: 1.2rem;
+      line-height: 1.75;
+    }
+
+    /* CONTACT BLOCK */
+
+    .contact-block {
+      margin-top: 2rem;
+      padding-top: 1.4rem;
+      border-top: 1px dashed rgba(255, 255, 255, 0.16);
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      font-size: 14px;
+    }
+
+    .contact-label {
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-bottom: 0.8rem;
+    }
+
+    .contact-line {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      color: var(--text-main);
+    }
+
+    .contact-icon {
+      font-size: 18px;
+      color: var(--accent);
+      flex-shrink: 0;
+    }
+
+    .contact-tag {
+      min-width: 80px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .contact-line a {
+      font-weight: 500;
+    }
+
+
+    @media (max-width: 600px) {
+      /* ...existing rules... */
+
+      .contact-block {
+        align-items: center;
+        text-align: center;
+      }
+
+      .contact-line {
         flex-direction: column;
         align-items: center;
       }
 
-      .calendar-container,
-      .info-box {
-        width: 90%;
+      .contact-tag {
+        min-width: auto;
       }
     }
 
-    .desktop-gap-fix {
-      height: 55px;
-      /* Adjust height if needed */
-      background-color: #000;
-      display: block;
+
+    /* RIGHT COLUMN – FORM */
+
+    .form-heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 1.3rem;
+      gap: 1.5rem;
+      flex-wrap: wrap;
     }
 
-    @media (max-width: 768px) {
-      .desktop-gap-fix {
-        display: none;
+    .form-heading-title {
+      font-family: var(--font-serif);
+      font-size: 24px;
+    }
+
+    .form-heading-sub {
+      font-size: 12px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.1rem 1.2rem;
+    }
+
+    .form-row-1 {
+      grid-column: span 2;
+    }
+
+    label {
+      display: block;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      margin-bottom: 0.45rem;
+      color: var(--text-muted);
+    }
+
+    .required {
+      color: var(--accent);
+      margin-left: 0.15rem;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      background-color: rgba(2, 2, 6, 0.78);
+      color: var(--text-main);
+      padding: 0.9rem 1.2rem;
+      font-size: 15px;
+      outline: none;
+      transition: border-color 150ms ease-out, box-shadow 150ms ease-out,
+        background-color 150ms ease-out, transform 150ms ease-out;
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+      color: rgba(197, 197, 207, 0.6);
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 1px rgba(242, 91, 91, 0.45);
+      transform: translateY(-1px);
+      background-color: rgba(10, 10, 18, 0.95);
+    }
+
+    select {
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      background-image: linear-gradient(45deg, transparent 50%, #ffffff 50%),
+        linear-gradient(135deg, #ffffff 50%, transparent 50%);
+      background-position: calc(100% - 18px) calc(50% - 2px),
+        calc(100% - 13px) calc(50% - 2px);
+      background-size: 6px 6px, 6px 6px;
+      background-repeat: no-repeat;
+      padding-right: 2.8rem;
+    }
+
+    textarea {
+      border-radius: 18px;
+      min-height: 150px;
+      resize: vertical;
+      padding-top: 0.9rem;
+    }
+
+    .form-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 1.7rem;
+      gap: 1.2rem;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 600px) {
+      .form-footer {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      .btn-submit {
+        width: 100%;
+        max-width: 260px;
+        justify-content: center;
+      }
+
+      .form-smallprint {
+        text-align: center;
+        margin-bottom: 1rem;
+      }
+    }
+
+    .form-smallprint {
+      font-size: 13px;
+      color: var(--text-muted);
+      max-width: 22rem;
+      line-height: 1.7;
+    }
+
+    .btn-submit {
+      border-radius: 999px;
+      border: none;
+      background: linear-gradient(120deg, var(--accent), #ff9671);
+      padding: 1rem 2.4rem;
+      font-size: 14px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      font-weight: 600;
+      color: #050509;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.7rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast),
+        opacity 120ms ease-out;
+    }
+
+    .btn-submit[disabled] {
+      opacity: 0.65;
+      cursor: default;
+      box-shadow: none;
+      transform: none;
+    }
+
+    .btn-submit:not([disabled]):hover {
+      transform: translateY(-1px);
+      box-shadow: 0 14px 42px rgba(0, 0, 0, 0.9);
+    }
+
+    .btn-icon {
+      font-size: 18px;
+    }
+
+    /* STATUS TOAST */
+
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      max-width: 320px;
+      padding: 0.9rem 1.2rem;
+      border-radius: 999px;
+      font-size: 14px;
+      background: rgba(8, 16, 24, 0.96);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.85);
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(12px);
+      transition: opacity 180ms ease-out, transform 180ms ease-out;
+      z-index: 40;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    .toast.success {
+      border-color: rgba(88, 207, 137, 0.7);
+    }
+
+    .toast.error {
+      border-color: rgba(255, 124, 124, 0.8);
+    }
+
+    .toast-icon {
+      font-size: 18px;
+    }
+
+    /* FOOTER / WORKING HOURS */
+
+    .hours {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding-top: 2.5rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      justify-content: space-between;
+      gap: 2rem;
+      flex-wrap: wrap;
+      color: var(--text-muted);
+      font-size: 14px;
+    }
+
+    @media (max-width: 600px) {
+      /* ...previous mobile rules... */
+
+      .hours {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      .hours-block {
+        width: 100%;
+        max-width: 340px;
+      }
+    }
+
+    .hours-title {
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      font-size: 12px;
+      margin-bottom: 0.8rem;
+    }
+
+    .hours-block p {
+      margin-bottom: 0.25rem;
+    }
+
+    .hours-contact a {
+      display: block;
+      margin-bottom: 0.2rem;
+    }
+
+    /* RESPONSIVE */
+
+    @media (max-width: 960px) {
+      .hero {
+        height: 70vh;
+      }
+
+      .page-inner {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .card {
+        padding: 1.7rem 1.5rem;
+      }
+
+      .form-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .form-row-1 {
+        grid-column: span 1;
+      }
+
+      .hours {
+        flex-direction: column;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .hero-title {
+        font-size: 34px;
+      }
+
+      .hero-title span.script {
+        font-size: 44px;
+      }
+
+      .hero {
+        height: 65vh;
+        min-height: 440px;
+      }
+
+      .page {
+        padding-top: 2.2rem;
+      }
+
+      .toast {
+        left: 12px;
+        right: 12px;
+        border-radius: 16px;
+      }
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(24px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
       }
     }
   </style>
 </head>
 
-<body id="top">
-  <div class="desktop-gap-fix"></div>
+<body>
+  <!-- TOPBAR (same as index.html) -->
+  <div class="topbar">
+    <div class="container">
 
+      <address class="topbar-item">
+        <div class="icon">
+          <ion-icon name="location-outline" aria-hidden="true"></ion-icon>
+        </div>
 
+        <span class="span">
+          183, Jln Mayang, Kampung Baru, 5040 Kuala Lumpur
+        </span>
+      </address>
+
+      <div class="separator"></div>
+
+      <div class="topbar-item item-2">
+        <div class="icon"></div>
+      </div>
+
+      <a href="tel:+442039627600" class="topbar-item link">
+        <div class="icon">
+          <ion-icon name="call-outline" aria-hidden="true"></ion-icon>
+        </div>
+
+        <span class="span">0203 962 7600</span>
+      </a>
+
+      <div class="separator"></div>
+    </div>
+  </div>
+
+  <!-- HEADER (identical to home, with Reservations active) -->
   <header class="header" data-header>
     <div class="container">
 
       <div class="mobile-header-wrapper">
-        <a href="#" class="logo">
-          <img
-            src="https://res.cloudinary.com/dgpuqdwgu/image/upload/v1750694125/ChatGPT_Image_Jun_23_2025_04_55_09_PM_oqyhdy.png"
-            width="230" height="400" alt="Namour - Home">
+        <a href="index.html" class="logo">
+          <img src="https://res.cloudinary.com/dgpuqdwgu/image/upload/v1763391275/canopy-logo-main_n2kifx.png"
+            width="230" height="300" alt="Canopy - Home">
         </a>
 
         <nav class="navbar" data-navbar>
@@ -232,21 +705,26 @@
             <ion-icon name="close-outline" aria-hidden="true"></ion-icon>
           </button>
 
-          <a href="#" class="logo">
-            <img
-              src="https://res.cloudinary.com/dgpuqdwgu/image/upload/v1750694125/ChatGPT_Image_Jun_23_2025_04_55_09_PM_oqyhdy.png"
-              width="160" height="150" alt="Namour - Home">
+          <a href="index.html" class="logo">
+            <img src="https://res.cloudinary.com/dgpuqdwgu/image/upload/v1763391275/canopy-logo-main_n2kifx.png"
+              width="160" height="150" alt="Canopy - Home">
           </a>
 
           <ul class="navbar-list">
 
-            <li class="navbar-item"><a href="index.html" class="navbar-link hover-underline">
-                <div class="separator"></div><span class="span">Home</span>
-              </a></li>
+            <li class="navbar-item">
+              <a href="index.html" class="navbar-link hover-underline">
+                <div class="separator"></div>
+                <span class="span">Home</span>
+              </a>
+            </li>
 
-            <li class="navbar-item"><a href="reservations.html" class="navbar-link hover-underline">
-                <div class="separator"></div><span class="span">Reservations</span>
-              </a></li>
+            <li class="navbar-item">
+              <a href="reservations.html" class="navbar-link hover-underline active">
+                <div class="separator"></div>
+                <span class="span">Reservations</span>
+              </a>
+            </li>
 
             <li class="navbar-item">
               <a href="index.html#menus" class="navbar-link hover-underline">
@@ -255,50 +733,32 @@
               </a>
             </li>
 
-            <!-- <li class="navbar-item dropdown">
-            <a href="#" class="navbar-link hover-underline">
-              <div class="separator"></div><span class="span">Branches</span>
-            </a>
-            <ul class="dropdown-menu">
-              <li><a href="https://www.carltonlounge.co.uk/" target="_blank">Kingsbury</a></li>
-              <li><a href="https://www.sherekhanrestaurant.com/" target="_blank">Enfield</a></li>
-            </ul>
-          </li> -->
-
-            <!-- <li class="navbar-item"><a href="whatson.html" class="navbar-link hover-underline">
-                <div class="separator"></div><span class="span">What’s New</span>
-              </a></li> -->
-
-            <li class="navbar-item"><a href="contact.html" class="navbar-link hover-underline">
-                <div class="separator"></div><span class="span">Contact Us</span>
-              </a></li>
-
-            <!-- <li class="navbar-item"><a href="houserules.html" class="navbar-link hover-underline">
-              <div class="separator"></div><span class="span">House Rules</span>
-            </a></li> -->
+            <li class="navbar-item">
+              <a href="contact.html" class="navbar-link hover-underline">
+                <div class="separator"></div>
+                <span class="span">Contact Us</span>
+              </a>
+            </li>
 
           </ul>
 
           <div class="text-center">
             <p class="headline-1 navbar-title">Visit Us</p>
+
             <address class="body-4">
-              10 Hanger Ln,<br>London W5 1ET
+              10 Hanger Ln, London W5 1ET
             </address>
-            <!-- <p class="body-4 navbar-text">Open: 9.30 am - 2.30pm</p> -->
-            <a href="mailto:bookings@tigerbayshisha.co.uk" class="body-4 sidebar-link">Write To Us</a>
+
+            <a href="mailto:bookings@tigerbayshisha.co.uk" class="body-4 sidebar-link">Email Us</a>
+
             <div class="separator"></div>
-            <p class="contact-label">Booking Request</p>
-            <a href="tel:+442039627600" class="body-1 contact-number hover-underline">
-              +44-20396-27600
+
+            <a href="tel:+88123123456" class="body-1 contact-number hover-underline">
+              0203 962 7600
             </a>
           </div>
 
         </nav>
-
-        <!-- <a href="reservations.html" class="btn btn-secondary">
-          <span class="text text-1">Find A Table</span>
-          <span class="text text-2" aria-hidden="true">Find A Table</span>
-        </a> -->
 
         <button class="nav-open-btn" aria-label="open menu" data-nav-toggler>
           <span class="line line-1"></span>
@@ -309,279 +769,311 @@
         <div class="overlay" data-nav-toggler data-overlay></div>
 
       </div>
+    </div>
   </header>
 
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-eyebrow">Rooftop | Kuala Lumpur</div>
+      <h1 class="hero-title">
+        <span class="script">Book a Table</span>
+        TONIGHT
+      </h1>
+      <div class="hero-divider"></div>
+      <p class="hero-subtitle">
+        Reserve your spot at Canopy Rooftop Bar in just a few steps.
+        Enjoy skyline views, crafted cocktails and the world’s first international shisha experience.
+      </p>
+      <button class="hero-cta" id="scrollToForm">
+        <span class="icon">⬤</span>
+        Reserve Now
+      </button>
+    </div>
+  </section>
 
-  <!-- Main Content -->
-  <main>
-    <section class="hero-section">
-      <div class="hero-content">
-        <br><br><br><br><br>
-        <h1>Book your table</h1>
-        <!-- <h3>Book your table</h3> -->
+  <!-- MAIN CONTENT -->
+  <main class="page">
+    <div class="page-inner" id="reservation">
+
+      <!-- BEFORE YOU RESERVE -->
+      <aside class="card">
+        <h2 class="reserve-heading">Before You Reserve</h2>
+        <p class="reserve-copy">
+          We take our SOPs very seriously and we hope, for the safety of everyone,
+          our guests will maintain social distancing and follow the guidelines below.
+        </p>
+        <ul class="reserve-list">
+          <li>
+            <span class="bullet">1</span>
+            <span>Maintaining social distancing is the responsibility of our guests.</span>
+          </li>
+          <li>
+            <span class="bullet">2</span>
+            <span>
+              Please wear your mask at all times until you are seated at your table.
+            </span>
+          </li>
+          <li>
+            <span class="bullet">3</span>
+            <span>
+              Table requests are subject to availability and are not guaranteed.
+            </span>
+          </li>
+          <li>
+            <span class="bullet">4</span>
+            <span>
+              Certain tables have a minimum spend requirement.
+            </span>
+          </li>
+          <li>
+            <span class="bullet">5</span>
+            <span>
+              For menus, bottle service and payment procedures, kindly contact us directly.
+            </span>
+          </li>
+        </ul>
+
+        <p class="reserve-note">
+          Should a guest refuse to comply with the SOPs, management reserves the right
+          to remove the guest from the venue to protect others.
+        </p>
+
+        <div class="contact-block">
+          <div class="contact-label">Book via phone or WhatsApp</div>
+
+          <div class="contact-line">
+            <ion-icon name="call-outline" class="contact-icon" aria-hidden="true"></ion-icon>
+            <span class="contact-tag">Tel</span>
+            <a href="tel:+60321817907">+60 3 2181 7907</a>
+          </div>
+
+          <div class="contact-line">
+            <ion-icon name="call-outline" class="contact-icon" aria-hidden="true"></ion-icon>
+            <span class="contact-tag">Mob</span>
+            <a href="tel:+601131722316">+60 11 3172 2316</a>
+          </div>
+
+          <div class="contact-line">
+            <ion-icon name="logo-whatsapp" class="contact-icon" aria-hidden="true"></ion-icon>
+            <span class="contact-tag">WhatsApp</span>
+            <a href="https://wa.me/601151398301" target="_blank">+60 11 5139 8301</a>
+          </div>
+
+          <div class="contact-line">
+            <ion-icon name="mail-outline" class="contact-icon" aria-hidden="true"></ion-icon>
+            <span class="contact-tag">Email</span>
+            <a href="mailto:info@canopylounge.my">info@canopylounge.my</a>
+          </div>
+        </div>
+      </aside>
+
+      <!-- RESERVATION FORM -->
+      <section class="card">
+        <header class="form-heading">
+          <div>
+            <h2 class="form-heading-title">Reservation Request</h2>
+            <p class="form-heading-sub">Booking confirmation within minutes</p>
+          </div>
+          <div style="text-align:right;font-size:12px;color:var(--text-muted);">
+            <div>Sun–Sat · 4:00pm – 3:00am</div>
+            <div>Child Friendly (18+) · 4:00pm – 10:30pm</div>
+          </div>
+        </header>
+
+        <form id="reservationForm" class="form-grid" novalidate>
+          <div class="form-row-1">
+            <label for="name">Your Name<span class="required">*</span></label>
+            <input id="name" name="name" type="text" required placeholder="Full name" />
+          </div>
+
+          <div>
+            <label for="email">Your Email<span class="required">*</span></label>
+            <input id="email" name="email" type="email" required placeholder="you@example.com" />
+          </div>
+
+          <div>
+            <label for="phone">Contact Number<span class="required">*</span></label>
+            <input id="phone" name="phone" type="tel" required placeholder="+60…" />
+          </div>
+
+          <div>
+            <label for="subject">Subject<span class="required">*</span></label>
+            <select id="subject" name="subject" required>
+              <option value="">Select one</option>
+              <option value="Book a Table">Book a Table</option>
+              <option value="Birthday Celebration">Birthday Celebration</option>
+              <option value="Corporate Event">Corporate Event</option>
+              <option value="Private Hire">Private Hire</option>
+              <option value="Other">Other Enquiry</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="date">Date<span class="required">*</span></label>
+            <input id="date" name="date" type="date" required />
+          </div>
+
+          <div>
+            <label for="time">Time<span class="required">*</span></label>
+            <input id="time" name="time" type="time" required />
+          </div>
+
+          <div>
+            <label for="guests">How many guests?<span class="required">*</span></label>
+            <select id="guests" name="guests" required>
+              <option value="">Select</option>
+              <option value="2">2 guests</option>
+              <option value="3-4">3–4 guests</option>
+              <option value="5-6">5–6 guests</option>
+              <option value="7-10">7–10 guests</option>
+              <option value="10+">10+ guests</option>
+            </select>
+          </div>
+
+          <div class="form-row-1">
+            <label for="message">Your Message</label>
+            <textarea id="message" name="message"
+              placeholder="Tell us if you’re celebrating something special, preferred table area, shisha flavours, etc."></textarea>
+          </div>
+
+          <div class="form-row-1 form-footer">
+            <p class="form-smallprint">
+              This form sends a reservation request only. Your booking is confirmed
+              once you receive a confirmation email or message from our team.
+            </p>
+            <button type="submit" class="btn-submit" id="submitBtn">
+              <span class="btn-icon">✉</span>
+              <span>Send Request</span>
+            </button>
+          </div>
+        </form>
+      </section>
+    </div>
+
+    <!-- WORKING HOURS / ADDRESS -->
+    <section class="hours" id="pageFooter">
+      <div class="hours-block">
+        <div class="hours-title">Working Hours</div>
+        <p>Sun–Sat: 04:00pm – 03:00am</p>
+        <p>Child Friendly (18+): Sun–Sat: 04:00pm – 10:30pm</p>
       </div>
-    </section>
-
-
-    <section class="section">
-      <div class="grid">
-        <div class="calendar-container">
-          <div id="booking-widget"></div>
-        </div>
-
-        <div class="info-box">
-          <h2 style="text-transform: uppercase; margin-bottom: 20px;">Some Key Information:</h2>
-
-          <p><strong style="color: #fdd835;">**OUR TERMS AND CONDITIONS CAN CHANGE AT ANYTIME IN LINE WITH GOVERNMENT
-              GUIDANCE**</strong></p>
-
-          <ul style="padding-left: 20px; margin: 15px 0;">
-            <li style="margin-bottom: 10px;">
-              Monday – sunday : 12PM – 2:30AM
-              <br>Strict last & Re Entry Policy – 02:15AM
-            </li>
-            <li style="margin-bottom: 10px;">
-              <strong>Deposits are non-refundable.</strong> Once a booking is made we cannot change, cancel or amend
-              this due to the high demand. (Booking fees only apply Friday to Sunday and any event days.)
-            </li>
-            <li style="margin-bottom: 10px;">
-              If there is any request, please email us at <a href="mailto:bookings@tigerbayshisha.co.uk"
-                style="color: #ff6a6a;"><strong>bookings@tigerbayshisha.co.uk</strong></a> and we will do our best to
-              offer alternatives, subject to availability.
-            </li>
-            <li style="margin-bottom: 10px;">
-              During busy periods sometimes we are unable to answer any phone queries, we apologise in advance.
-            </li>
-          </ul>
-
-          <p style="margin-top: 25px;"><strong>House Rules include (but not limited to):</strong></p>
-          <ul style="padding-left: 20px;">
-            <li style="margin-bottom: 10px;">
-              A smart dress code Friday to Sunday (no sport wear, gym wear, tracksuits, track pants or sport shorts).
-            </li>
-            <li style="margin-bottom: 10px;">
-              <strong>**Hoodies, caps and smart shorts at the discretion of the door staff**</strong>
-            </li>
-            <li style="margin-bottom: 10px;">
-              Arriving on time for your booking or you will lose your deposit.
-            </li>
-            <li style="margin-bottom: 10px;">
-              Allocated seating time during busy times.
-            </li>
-            <li style="margin-bottom: 10px;">
-              Management and security have rights to refuse entry.
-            </li>
-          </ul>
-
-          <p style="margin-top: 20px;">
-            Full <span style="color: #fdd835;">Terms and Conditions</span> are here (please note these can change
-            without notice and updates on our system due to high demand).
-          </p>
-
-          <a class="btn-link" onclick="openModal('houseModal')">View House Rules</a>
-          <a class="btn-link" onclick="openModal('privacyModal')">Privacy Policy (Click here)</a>
-        </div>
+      <div class="hours-block hours-contact">
+        <div class="hours-title">Canopy by Tigerbay International</div>
+        <p>Tigerbay, Kuala Lumpur<br />
+          183, Jalan Mayang, 50450<br />
+          Kuala Lumpur, Malaysia
+        </p>
+        <p><a href="https://maps.google.com" target="_blank">Click for Directions</a></p>
+        <p>
+          Bookings Tel:
+          <a href="tel:+601151398301">+60 11 5139 8301</a>
+          <a href="tel:+601131722316">+60 11 3172 2316</a>
+        </p>
+        <p>Office: <a href="tel:+60321817907">+60 3 2181 7907</a></p>
+        <p>Email: <a href="mailto:info@canopylounge.my">info@canopylounge.my</a></p>
       </div>
     </section>
   </main>
 
-  <!-- Footer -->
-  <footer class="footer section has-bg-image text-center">
-    <p class="copyright">&copy; 2025 Tigerbay Shisha. All Rights Reserved.</p>
-  </footer>
-
-  <!-- Modals -->
-  <div id="houseModal" class="modal">
-    <div class="modal-content">
-      <span class="close" onclick="closeModal('houseModal')">&times;</span>
-      <h3 style="color: #ff5252; margin-bottom: 20px;">House Rules</h3>
-      <ol style="padding-left: 20px;">
-        <li><strong>Entry & Security Checks</strong><br>
-          All customers will be searched upon entry using metal detector wands.<br>
-          Any prohibited items found will result in denied entry.<br>
-          <strong>Last entry times:</strong><br>
-          <span style="margin-left: 10px;">Sunday to Thursday:</span> 01:15 AM<br>
-          <span style="margin-left: 10px;">Friday & Saturday:</span> 02:15 AM<br>
-          <strong>No re-entry</strong> once you have left the venue.
-        </li><br>
-        <li><strong>Age & ID Verification</strong><br>
-          We are <strong>strictly an over-18 venue</strong> – proof of age will be required.<br>
-          After 10 PM, all customers must present valid photo ID.<br>
-          We operate <strong>Challenge 25</strong> – if you appear under 25, you must provide valid ID.<br>
-          IDs will be scanned via our <strong>ClubScan</strong> system.
-        </li><br>
-        <li><strong>Zero Tolerance Policy</strong><br>
-          We have a <strong>strict zero-tolerance policy on drugs</strong>.<br>
-          Any drug-related activity will result in removal and reporting to authorities.<br>
-          Aggressive or anti-social behaviour will result in removal and a ban.
-        </li><br>
-        <li><strong>CCTV Monitoring & Security</strong><br>
-          CCTV is in operation throughout the premises.<br>
-          Footage may be shared with authorities upon request.
-        </li><br>
-        <li><strong>Conduct & Respect for Others</strong><br>
-          Be kind and polite to all staff and fellow customers.<br>
-          Customers must leave in an orderly manner.<br>
-          Management may ask guests to leave earlier than closing time for safety reasons.<br>
-          Loud or disruptive behaviour will not be tolerated.
-        </li><br>
-        <li><strong>Dress Code & Venue Behaviour</strong><br>
-          Smart casual attire is required. No sportswear or excessively casual wear.<br>
-          Loud, disruptive, or unruly behaviour is not allowed.
-        </li><br>
-        <li><strong>Alcohol & Substance Regulations</strong><br>
-          Outside food or drink is prohibited.<br>
-          Illegal drug use is strictly banned.
-        </li><br>
-        <li><strong>Weapons & Dangerous Items</strong><br>
-          Weapons or hazardous items are strictly prohibited.
-        </li><br>
-        <li><strong>90 Minutes Policy</strong><br>
-          During peak hours, a 90-minute seating limit applies.
-        </li><br>
-        <li><strong>Management & Security Rights</strong><br>
-          Management and security may refuse entry or service.
-        </li><br>
-        <li><strong>Final Notice</strong><br>
-          If you do not agree to the house rules, please do not enter.
-        </li>
-      </ol>
-    </div>
+  <!-- TOAST -->
+  <div id="toast" class="toast">
+    <span class="toast-icon" id="toastIcon">✉</span>
+    <span id="toastMessage"></span>
   </div>
 
-  <div id="privacyModal" class="modal">
-    <div class="modal-content">
-      <span class="close" onclick="closeModal('privacyModal')">&times;</span>
-      <h3 style="color: #f39c12; margin-bottom: 10px;">Privacy Policy</h3>
-      <p><strong>Effective Date:</strong> 10/04/2025</p>
-
-      <p><strong>1. About Us</strong><br>
-        We are dedicated to providing exceptional dining experiences while respecting your privacy. This policy
-        explains
-        how we collect, use, and protect your personal information when you visit our restaurant, interact with us
-        online, or use our services.</p>
-
-      <br>
-      <p><strong>2. What Information We Collect</strong><br>
-        We may collect the following types of personal data:</p>
-      <ul>
-        <li><strong>Reservations & Bookings:</strong> Name, contact details, and any special requests.</li>
-        <li><strong>Transactions:</strong> Payment details, receipts, and billing information.</li>
-        <li><strong>Website & Digital Interactions:</strong> IP addresses, cookies, and browsing behaviour.</li>
-        <li><strong>Marketing Preferences:</strong> Information provided when subscribing to newsletters or
-          promotions.
-        </li>
-        <li><strong>Feedback & Communication:</strong> Records of interactions via phone, email, or social media.</li>
-        <li><strong>Wi-Fi Usage:</strong> If you use our restaurant’s Wi-Fi, we may collect device information and
-          browsing activity in accordance with our terms of service.</li>
-      </ul>
-      <p>Please note that phone calls may be recorded for training and quality assurance purposes.</p>
-
-      <br>
-      <p><strong>3. How We Use Your Information</strong></p>
-      <ul>
-        <li>Process reservations and orders efficiently.</li>
-        <li>Communicate promotions, updates, and special offers (with consent).</li>
-        <li>Improve our services and enhance your experience.</li>
-        <li>Ensure security and fraud prevention.</li>
-        <li>Comply with legal and regulatory requirements.</li>
-        <li>Provide access to our Wi-Fi services and ensure network security.</li>
-      </ul>
-
-      <br>
-      <p><strong>4. Legal Basis for Processing Personal Data</strong><br>
-        We process personal data in accordance with the UK GDPR and the Data Protection Act 2018. Legal bases include:
-      </p>
-      <ul>
-        <li><strong>Performance of a Contract:</strong> To provide requested services such as reservations and orders.
-        </li>
-        <li><strong>Legitimate Interests:</strong> For operational improvements, fraud prevention, and customer
-          experience enhancement.</li>
-        <li><strong>Consent:</strong> Where required for marketing communications or optional data collection.</li>
-        <li><strong>Legal Obligations:</strong> To comply with applicable laws and regulations.</li>
-      </ul>
-
-      <br>
-      <p><strong>5. Sharing & Protecting Your Data</strong><br>
-        We do not sell your data. However, we may share it with:</p>
-      <ul>
-        <li>Payment providers for transaction processing.</li>
-        <li>Service providers assisting in restaurant operations.</li>
-        <li>Authorities when required by law.</li>
-        <li>Third-party platforms that help us manage bookings, promotions, and customer feedback.</li>
-      </ul>
-      <p>We take reasonable security measures to protect your data from unauthorised access, loss, or disclosure, in
-        line with UK GDPR requirements.</p>
-
-      <br>
-      <p><strong>6. Your Rights Under GDPR</strong><br>
-        Under UK GDPR, you have the following rights regarding your personal data:</p>
-      <ul>
-        <li><strong>Access:</strong> Request a copy of the personal data we hold about you.</li>
-        <li><strong>Correction:</strong> Ask us to rectify inaccurate or incomplete information.</li>
-        <li><strong>Deletion:</strong> Request the removal of your personal data where applicable.</li>
-        <li><strong>Restriction:</strong> Limit how we process your data under certain circumstances.</li>
-        <li><strong>Objection:</strong> Opt out of certain processing activities, such as direct marketing.</li>
-        <li><strong>Data Portability:</strong> Request a transfer of your personal data in a structured, commonly used
-          format.</li>
-      </ul>
-      <p>To exercise these rights, contact us at: <a
-          href="mailto:info@tigerbayshisha.co.uk">info@tigerbayshisha.co.uk</a></p>
-
-      <br>
-      <p><strong>7. Cookies & Tracking Technologies</strong><br>
-        We use cookies to enhance your experience. You can manage cookie preferences through your browser settings.
-      </p>
-
-      <br>
-      <p><strong>8. Updates to This Policy</strong><br>
-        We may update this Privacy Policy periodically. Changes will be posted on our website, and continued use of
-        our
-        services implies acceptance of the revised policy.</p>
-
-      <br>
-      <p><strong>9. Contact Us</strong><br>
-        If you have any questions about this Privacy Policy, or how we handle your data, please contact us at: <a
-          href="mailto:info@tigerbayshisha.co.uk">info@tigerbayshisha.co.uk</a></p>
-
-      <p class="last-updated"><strong>Last Updated:</strong> 10/04/2025</p>
-    </div>
-  </div>
-
-  <!-- Scripts -->
   <script>
-    function openModal(id) {
-      document.getElementById(id).style.display = 'block';
-      document.body.classList.add('modal-open'); // Prevent background scroll
+    // Smooth scroll from hero to form
+    document.getElementById("scrollToForm").addEventListener("click", () => {
+      document.getElementById("reservation").scrollIntoView({ behavior: "smooth" });
+    });
+
+    const form = document.getElementById("reservationForm");
+    const submitBtn = document.getElementById("submitBtn");
+    const toast = document.getElementById("toast");
+    const toastMessage = document.getElementById("toastMessage");
+    const toastIcon = document.getElementById("toastIcon");
+
+    function showToast(message, type = "success") {
+      toastMessage.textContent = message;
+      toast.classList.remove("success", "error");
+      toast.classList.add(type);
+      toastIcon.textContent = type === "success" ? "✔" : "⚠";
+      toast.classList.add("show");
+      setTimeout(() => {
+        toast.classList.remove("show");
+      }, 4500);
     }
 
-    function closeModal(id) {
-      document.getElementById(id).style.display = 'none';
-      document.body.classList.remove('modal-open'); // Re-enable scroll
-    }
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
 
-    window.onclick = function (event) {
-      if (event.target.classList.contains('modal')) {
-        event.target.style.display = 'none';
+      if (!form.checkValidity()) {
+        showToast("Please fill in all required fields.", "error");
+        return;
       }
-    };
 
-    window.addEventListener("DOMContentLoaded", function () {
-      const script = document.createElement("script");
-      script.src = "//widgets.designmynight.com/bookings-partner.min.js";
-      script.async = true;
-      script.setAttribute("dmn-booking-form", "true");
-      script.setAttribute("venue", "5d5e6db30b108365ab6d9c5f");
-      script.setAttribute("hide-offers", "false");
-      script.setAttribute("hide-powered-by", "false");
-      script.setAttribute("search-venues", "false");
-      script.setAttribute("monday-first", "true");
-      document.getElementById("booking-widget").appendChild(script);
+      const formData = Object.fromEntries(new FormData(form).entries());
+
+      submitBtn.disabled = true;
+      submitBtn.querySelector("span:nth-child(2)").textContent = "Sending…";
+
+      try {
+        const res = await fetch("/api/reservation", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(formData),
+        });
+
+        if (!res.ok) throw new Error("Request failed");
+
+        showToast("Thank you! We’ve received your request.", "success");
+        form.reset();
+      } catch (err) {
+        console.error(err);
+        showToast("Sorry, something went wrong. Please try again.", "error");
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.querySelector("span:nth-child(2)").textContent = "Send Request";
+      }
     });
   </script>
+  <script>
+    // Prevent scrolling past the footer (hours section)
+    (function () {
+      const footer = document.getElementById("pageFooter");
+      if (!footer) return;
+
+      let isAdjusting = false;
+
+      function clampScroll() {
+        if (isAdjusting) return;
+
+        const footerBottom = footer.offsetTop + footer.offsetHeight;
+        const maxScroll = footerBottom - window.innerHeight;
+
+        // If content height is less than viewport, do nothing
+        if (maxScroll <= 0) return;
+
+        const current = window.pageYOffset || document.documentElement.scrollTop;
+
+        if (current > maxScroll) {
+          isAdjusting = true;
+          window.scrollTo(0, maxScroll);
+          isAdjusting = false;
+        }
+      }
+
+      window.addEventListener("scroll", clampScroll, { passive: true });
+      window.addEventListener("resize", clampScroll);
+    })();
+  </script>
+
+
   <script src="./assets/js/script.js"></script>
   <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
 </body>
 
 </html>
