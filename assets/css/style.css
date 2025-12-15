@@ -822,6 +822,7 @@ body.nav-active {
 }
 
 
+/* Extra Menu code */
 
 
 
@@ -946,7 +947,7 @@ body.nav-active {
   width: 100%;
   padding-inline: 30px;
   padding-block-end: 50px;
-  overflow-y: auto;
+  overflow: hidden;
   visibility: hidden;
   z-index: 2;
   transition: var(--transition-2);
@@ -1074,6 +1075,139 @@ body.nav-active {
   pointer-events: all;
 }
 
+/* New Overflow stop */
+/* ===== Mobile menu height fix (NO SCROLL) ===== */
+@media (max-width: 992px) {
+
+  .navbar {
+    padding-inline: 24px;
+    padding-block-end: 20px;
+  }
+
+  .navbar .logo {
+    margin-block-end: 28px;
+  }
+
+  .navbar-list {
+    margin-block-end: 30px;
+  }
+
+  .nav-socials {
+    margin: 10px 0;
+  }
+
+  .nav-whatsapp-line {
+    font-size: clamp(1.1rem, 3.2vw, 1.35rem);
+    margin-bottom: 18px;
+  }
+
+  .navbar .text-center .separator {
+    margin-block: 14px;
+  }
+}
+
+/* ---------------------------------
+   AESTHETIC OUTER GOLD FRAME (Mobile)
+----------------------------------*/
+
+@keyframes outerGlow {
+  0% {
+    opacity: .35;
+  }
+
+  50% {
+    opacity: .75;
+  }
+
+  100% {
+    opacity: .35;
+  }
+}
+
+@keyframes cornerDrift {
+  0% {
+    transform: translate(0, 0);
+  }
+
+  50% {
+    transform: translate(4px, -4px);
+  }
+
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+@media (max-width: 600px) {
+
+  /* WRAPPER creates space for outer frame */
+  #menus .service-card,
+  .menu-row .service-card {
+    position: relative;
+    padding: 18px;
+    /* space for outer border */
+  }
+
+  /* OUTER FRAME */
+  #menus .service-card::before,
+  .menu-row .service-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 28px;
+
+    background:
+      linear-gradient(135deg,
+        rgba(246, 210, 131, .85),
+        rgba(197, 125, 50, .9),
+        rgba(246, 210, 131, .85));
+
+    padding: 2px;
+
+    -webkit-mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+
+    animation: outerGlow 4s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* INNER CARD (image container stays clean) */
+  #menus .card-banner,
+  .menu-row .card-banner {
+    position: relative;
+    border-radius: 22px;
+    z-index: 1;
+    overflow: hidden;
+  }
+
+  /* DECORATIVE CORNER ACCENTS */
+  #menus .card-banner::before,
+  .menu-row .card-banner::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+
+    background:
+      linear-gradient(45deg, rgba(246, 210, 131, .9) 0 2px, transparent 2px) top left,
+      linear-gradient(-45deg, rgba(246, 210, 131, .9) 0 2px, transparent 2px) top right,
+      linear-gradient(-135deg, rgba(246, 210, 131, .9) 0 2px, transparent 2px) bottom right,
+      linear-gradient(135deg, rgba(246, 210, 131, .9) 0 2px, transparent 2px) bottom left;
+
+    background-size: 26px 26px;
+    background-repeat: no-repeat;
+
+    animation: cornerDrift 6s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 2;
+  }
+}
+
+
 /* Instagtam */
 
 .instagram-card {
@@ -1117,6 +1251,55 @@ body.nav-active {
   z-index: 5;
 }
 
+/* Whatsapp Number in Hamburger Menu(Mobile) */
+/* WhatsApp line below social icons - force single line */
+.nav-whatsapp-line {
+  margin-top: 14px;
+  margin-bottom: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+
+  /* force one line */
+  flex-wrap: nowrap;
+  white-space: nowrap;
+}
+
+.nav-whatsapp-line ion-icon {
+  font-size: 18px;
+  color: #25D366;
+  display: inline-block;
+  /* override reset */
+}
+
+.nav-whatsapp-line a {
+  color: var(--white);
+  opacity: 0.9;
+  display: inline-block;
+  /* override reset */
+}
+
+.nav-whatsapp-line a:hover {
+  color: var(--gold-crayola);
+  opacity: 1;
+}
+
+/* THIS is the important fix: span must NOT be block */
+.nav-whatsapp-line .wa-divider {
+  display: inline-block;
+  /* override reset that makes span block */
+  opacity: 0.5;
+  margin: 0 6px;
+}
+
+/* optional: make sure it still fits on very small phones */
+@media (max-width: 360px) {
+  .nav-whatsapp-line {
+    font-size: 1.2rem;
+    gap: 5px;
+  }
+}
 
 
 /*-----------------------------------*\

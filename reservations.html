@@ -653,6 +653,46 @@
         transform: translateY(0);
       }
     }
+
+    /* rows */
+    .hours-contact .booking-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    /* IMPORTANT: override footer's "a { display:block }" */
+    .hours-contact .booking-row a {
+      display: inline-flex !important;
+      margin: 0 !important;
+    }
+
+    /* force order: number first, WhatsApp second (even if something else interferes) */
+    .hours-contact .booking-tel {
+      order: 2;
+    }
+
+    .hours-contact .whatsapp-link {
+      order: 1;
+    }
+
+    /* icon style to match your theme */
+    .hours-contact .whatsapp-link {
+      font-size: 16px;
+      color: var(--accent);
+      line-height: 0;
+    }
+
+    .hours-contact .whatsapp-link:hover {
+      text-decoration: none;
+    }
+
+    /* mobile: center and keep it neat */
+    @media (max-width: 600px) {
+      .hours-contact .booking-row {
+        justify-content: center;
+      }
+    }
   </style>
 </head>
 
@@ -777,14 +817,14 @@
     <div class="hero-content">
       <div class="hero-eyebrow">Rooftop | Kuala Lumpur</div>
       <h1 class="hero-title">
-        <span class="script">Book a Table</span>
-        TONIGHT
+        <!-- <span class="script">Book a Table</span> -->
+
       </h1>
       <div class="hero-divider"></div>
-      <p class="hero-subtitle">
+      <!-- <p class="hero-subtitle">
         Reserve your spot at Canopy Rooftop Bar in just a few steps.
         Enjoy skyline views, crafted cocktails and the world’s first international shisha experience.
-      </p>
+      </p> -->
       <button class="hero-cta" id="scrollToForm">
         <span class="icon">⬤</span>
         Reserve Now
@@ -797,7 +837,7 @@
     <div class="page-inner" id="reservation">
 
       <!-- BEFORE YOU RESERVE -->
-      <aside class="card">
+      <!-- <aside class="card">
         <h2 class="reserve-heading">Before You Reserve</h2>
         <p class="reserve-copy">
           We take our SOPs very seriously and we hope, for the safety of everyone,
@@ -837,35 +877,35 @@
         <p class="reserve-note">
           Should a guest refuse to comply with the SOPs, management reserves the right
           to remove the guest from the venue to protect others.
-        </p>
+        </p> -->
 
-        <div class="contact-block">
-          <div class="contact-label">Book via phone or WhatsApp</div>
+      <div class="contact-block">
+        <div class="contact-label">Book via phone or WhatsApp</div>
 
-          <div class="contact-line">
-            <ion-icon name="call-outline" class="contact-icon" aria-hidden="true"></ion-icon>
-            <span class="contact-tag">Tel</span>
-            <a href="tel:+60321817907">+60 3 2181 7907</a>
-          </div>
-
-          <div class="contact-line">
-            <ion-icon name="call-outline" class="contact-icon" aria-hidden="true"></ion-icon>
-            <span class="contact-tag">Mob</span>
-            <a href="tel:+601131722316">+60 11 3172 2316</a>
-          </div>
-
-          <div class="contact-line">
-            <ion-icon name="logo-whatsapp" class="contact-icon" aria-hidden="true"></ion-icon>
-            <span class="contact-tag">WhatsApp</span>
-            <a href="https://wa.me/601151398301" target="_blank">+60 11 5139 8301</a>
-          </div>
-
-          <div class="contact-line">
-            <ion-icon name="mail-outline" class="contact-icon" aria-hidden="true"></ion-icon>
-            <span class="contact-tag">Email</span>
-            <a href="mailto:info@canopylounge.my">info@canopylounge.my</a>
-          </div>
+        <div class="contact-line">
+          <ion-icon name="call-outline" class="contact-icon" aria-hidden="true"></ion-icon>
+          <span class="contact-tag">Tel</span>
+          <a href="tel:+60321817907">+60 3 2181 7907</a>
         </div>
+
+        <div class="contact-line">
+          <ion-icon name="call-outline" class="contact-icon" aria-hidden="true"></ion-icon>
+          <span class="contact-tag">Mob</span>
+          <a href="tel:+601131722316">+60 11 3172 2316</a>
+        </div>
+
+        <div class="contact-line">
+          <ion-icon name="logo-whatsapp" class="contact-icon" aria-hidden="true"></ion-icon>
+          <span class="contact-tag">WhatsApp</span>
+          <a href="https://wa.me/601151398301" target="_blank">+60 11 5139 8301</a>
+        </div>
+
+        <div class="contact-line">
+          <ion-icon name="mail-outline" class="contact-icon" aria-hidden="true"></ion-icon>
+          <span class="contact-tag">Email</span>
+          <a href="mailto:info@canopylounge.my">info@canopylounge.my</a>
+        </div>
+      </div>
       </aside>
 
       <!-- RESERVATION FORM -->
@@ -965,11 +1005,29 @@
           Kuala Lumpur, Malaysia
         </p>
         <p><a href="https://maps.google.com" target="_blank">Click for Directions</a></p>
-        <p>
+        <!-- <p>
           Bookings Tel:
           <a href="tel:+601151398301">+60 11 5139 8301</a>
           <a href="tel:+601131722316">+60 11 3172 2316</a>
+        </p> -->
+        <p class="booking-phones">
+          Bookings Tel:
+
+          <span class="booking-row">
+            <a class="booking-tel" href="tel:+601151398301">+60 11 5139 8301</a>
+            <a class="whatsapp-link" href="https://wa.me/601151398301" target="_blank" aria-label="Chat on WhatsApp">
+              <ion-icon name="logo-whatsapp"></ion-icon>
+            </a>
+          </span>
+
+          <span class="booking-row">
+            <a class="booking-tel" href="tel:+601131722316">+60 11 3172 2316</a>
+            <a class="whatsapp-link" href="https://wa.me/601131722316" target="_blank" aria-label="Chat on WhatsApp">
+              <ion-icon name="logo-whatsapp"></ion-icon>
+            </a>
+          </span>
         </p>
+
         <p>Office: <a href="tel:+60321817907">+60 3 2181 7907</a></p>
         <p>Email: <a href="mailto:info@canopylounge.my">info@canopylounge.my</a></p>
       </div>

@@ -9,13 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&family=Forum&display=swap"
         rel="stylesheet">
     <style>
-        /* Fix grid layout spacing */
-        /* .grid-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(285px, 1fr));
-            gap: 3rem;
-            justify-items: center;
-        } */
+        /* ───────────── General layout fixes ───────────── */
 
         header.header {
             position: fixed;
@@ -54,66 +48,148 @@
             margin-top: auto;
         }
 
-
-        /* Remove extra scroll on desktop */
-        /* body,
-        html {
-            margin: 0;
-            padding: 0;
-            overflow-x: hidden;
-        }
-
-        .shape {
-            max-height: 100vh;
-            overflow: hidden;
-            display: block;
-        } */
-
         /* Ensure section height doesn't extend beyond content */
         .service {
             padding-bottom: 4rem;
         }
 
-        .fixed-size-img {
-            width: 285px;
-            height: 336px;
-            object-fit: cover;
-        }
+        /* ───────────── Image containers (for ALL menus) ───────────── */
+        /* fixed-box is used in menus loaded via JS                       */
+        /* card-banner/img-holder/img-cover are on the home page section  */
 
         .fixed-box {
-            width: 285px;
-            height: 336px;
             overflow: hidden;
             position: relative;
+            border-radius: 20px;
         }
 
         .fixed-box img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            display: block;
         }
 
-        /* New code */
+        /* ───────────── Menu grid + card sizing ───────────── */
+
         .menu-row {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            /* 4 in a row */
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
             gap: 30px;
             list-style: none;
             padding: 0;
             margin: 0 auto;
-            justify-items: center;
+            max-width: 1000px;
+            justify-content: center;
         }
 
+        /* Desktop / large tablets */
+        @media (min-width: 1025px) {
+            .menu-row {
+                grid-template-columns: repeat(3, 1fr);
+                /* up to 3 per row */
+            }
+        }
+
+        /* Tablets */
         @media (max-width: 1024px) {
             .menu-row {
                 grid-template-columns: repeat(2, 1fr);
             }
         }
 
+        /* Phones */
         @media (max-width: 600px) {
             .menu-row {
                 grid-template-columns: 1fr;
+                row-gap: 24px;
+            }
+        }
+
+        /* The actual card */
+        .menu-row .service-card {
+            width: min(100%, 260px);
+            /* ✅ hard clamp – never wider than 260px */
+            margin-inline: auto;
+            background: #111;
+            border-radius: 22px;
+            padding: 16px 16px 20px;
+            box-shadow: 0 14px 36px rgba(0, 0, 0, 0.75);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        /* Image wrapper – shared styling for home + menus page */
+        .menu-row .card-banner,
+        .menu-row .fixed-box {
+            width: 100%;
+            aspect-ratio: 4 / 5;
+            padding: 3px;
+            /* thickness of border */
+            border-radius: 20px;
+            background: linear-gradient(135deg, #f6d283, #c57d32, #f6d283);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .menu-row .card-banner img,
+        .menu-row .fixed-box img,
+        .menu-row .img-cover {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            border-radius: 16px;
+            transition: transform 0.4s ease, opacity 0.4s ease;
+        }
+
+        .menu-row .card-content {
+            margin-top: 14px;
+        }
+
+        .menu-row .card-title a {
+            font-size: 2.1rem;
+            letter-spacing: 0.06em;
+        }
+
+        /* ───────────── Desktop hover effects ───────────── */
+
+        @media (hover: hover) and (pointer: fine) {
+            .menu-row .service-card:hover {
+                transform: translateY(-8px);
+                box-shadow: 0 20px 45px rgba(0, 0, 0, 0.9);
+            }
+
+            .menu-row .service-card:hover .card-banner img,
+            .menu-row .service-card:hover .fixed-box img {
+                transform: scale(1.08);
+                opacity: 0.94;
+            }
+
+            /* keeps your existing gold pattern animation */
+            .menu-row .service-card:hover .has-before::before {
+                transform: rotateY(0.5turn) translateX(50%);
+            }
+        }
+
+        /* ───────────── Extra mobile tweaks ───────────── */
+
+        @media (max-width: 600px) {
+            .menu-row .service-card {
+                width: min(100%, 230px);
+                /* even smaller on phones */
+                padding: 12px 12px 16px;
+                box-shadow: 0 10px 32px rgba(0, 0, 0, 0.85);
+            }
+
+            .menu-row .card-banner,
+            .menu-row .fixed-box {
+                aspect-ratio: 3 / 4;
+            }
+
+            .menu-row .card-title a {
+                font-size: 1.9rem;
             }
         }
     </style>
