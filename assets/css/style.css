@@ -3674,3 +3674,173 @@ textarea.input-field {
     padding-block: 6px;
   }
 }
+
+/* WhatsApp Button All Pages */
+/* ===== Floating WhatsApp Button (premium) ===== */
+.whatsapp-float {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 9999;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 12px 16px;
+  border-radius: 999px;
+
+  background: #25D366;
+  color: #fff;
+
+  box-shadow: 0 10px 24px rgba(0, 0, 0, .35);
+  text-decoration: none;
+
+  /* animation setup */
+  opacity: 0;
+  transform: translateY(14px) scale(.98);
+  pointer-events: none;
+  will-change: transform, opacity;
+
+  transition: transform .22s ease, filter .22s ease, box-shadow .22s ease, opacity .22s ease;
+}
+
+/* When active (shown) */
+.whatsapp-float.is-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+
+  /* slide-in feel */
+  animation: wa-pop .55s cubic-bezier(.2, .9, .2, 1) both;
+}
+
+/* subtle pulse ring */
+.whatsapp-float.is-visible::after {
+  content: "";
+  position: absolute;
+  inset: -6px;
+  border-radius: inherit;
+  border: 2px solid rgba(37, 211, 102, .35);
+  opacity: 0;
+  transform: scale(.9);
+  animation: wa-pulse 2.2s ease-out infinite;
+  pointer-events: none;
+}
+
+.whatsapp-float ion-icon {
+  font-size: 22px;
+}
+
+/* hover (desktop) */
+@media (hover:hover) {
+  .whatsapp-float.is-visible:hover {
+    transform: translateY(-3px) scale(1.01);
+    filter: brightness(1.06);
+    box-shadow: 0 14px 30px rgba(0, 0, 0, .40);
+  }
+}
+
+/* tap feedback (mobile) */
+.whatsapp-float:active {
+  transform: translateY(0) scale(.98);
+}
+
+/* Keep your existing back-to-top arrow above it */
+.back-top-btn {
+  bottom: 90px;
+}
+
+/* Mobile: show Message Us (pill) */
+@media (max-width: 420px) {
+  .whatsapp-float {
+    padding: 12px 16px;
+    border-radius: 999px;
+  }
+
+  .whatsapp-float span {
+    display: inline;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: .2px;
+    white-space: nowrap;
+  }
+}
+
+/* Animations */
+@keyframes wa-pop {
+  0% {
+    opacity: 0;
+    transform: translateY(18px) scale(.96);
+  }
+
+  60% {
+    opacity: 1;
+    transform: translateY(-2px) scale(1.02);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes wa-pulse {
+  0% {
+    opacity: 0;
+    transform: scale(.92);
+  }
+
+  35% {
+    opacity: .9;
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(1.12);
+  }
+}
+
+/* Accessibility: reduce motion */
+@media (prefers-reduced-motion: reduce) {
+
+  .whatsapp-float,
+  .whatsapp-float.is-visible {
+    animation: none !important;
+    transition: none !important;
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+  }
+
+  .whatsapp-float.is-visible::after {
+    display: none;
+  }
+}
+
+/* Footer Number & Mail */
+/* Mobile footer alignment fix */
+@media (max-width: 768px) {
+
+  /* Center logo */
+  .footer-brand .logo {
+    display: flex;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Center email & phone */
+  .footer-brand .contact-link {
+    display: block;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Center address text nicely */
+  .footer-brand address {
+    text-align: center;
+  }
+
+}
