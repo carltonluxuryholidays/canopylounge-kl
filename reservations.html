@@ -735,7 +735,7 @@
 
       <div class="mobile-header-wrapper">
         <a href="index.html" class="logo">
-          <img src="https://res.cloudinary.com/dgpuqdwgu/image/upload/v1763391275/canopy-logo-main_n2kifx.png"
+          <img src="https://res.cloudinary.com/dgpuqdwgu/image/upload/v1766579347/Canopy_by_Tiger_bay-logo_f7s0mv.png"
             width="230" height="300" alt="Canopy - Home">
         </a>
 
@@ -746,7 +746,7 @@
           </button>
 
           <a href="index.html" class="logo">
-            <img src="https://res.cloudinary.com/dgpuqdwgu/image/upload/v1763391275/canopy-logo-main_n2kifx.png"
+            <img src="https://res.cloudinary.com/dgpuqdwgu/image/upload/v1766579347/Canopy_by_Tiger_bay-logo_f7s0mv.png"
               width="160" height="150" alt="Canopy - Home">
           </a>
 
@@ -906,7 +906,7 @@
           <a href="mailto:info@canopylounge.my">info@canopylounge.my</a>
         </div>
       </div>
-      </aside>
+      <!-- </aside> -->
 
       <!-- RESERVATION FORM -->
       <section class="card">
@@ -941,11 +941,14 @@
             <label for="subject">Subject<span class="required">*</span></label>
             <select id="subject" name="subject" required>
               <option value="">Select one</option>
-              <option value="Book a Table">Book a Table</option>
+              <!-- <option value="Book a Table">Book a Table</option> -->
+              <option value="Book a table">Book a table</option>
               <option value="Birthday Celebration">Birthday Celebration</option>
               <option value="Corporate Event">Corporate Event</option>
               <option value="Private Hire">Private Hire</option>
-              <option value="Other">Other Enquiry</option>
+              <!-- <option value="Other">Other Enquiry</option> -->
+              <option value="Other Enquiry">Other Enquiry</option>
+
             </select>
           </div>
 
@@ -1040,7 +1043,7 @@
     <span id="toastMessage"></span>
   </div>
 
-  <script>
+  <!-- <script>
     // Smooth scroll from hero to form
     document.getElementById("scrollToForm").addEventListener("click", () => {
       document.getElementById("reservation").scrollIntoView({ behavior: "smooth" });
@@ -1131,6 +1134,234 @@
   <script src="./assets/js/script.js"></script>
   <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+  <script>
+    // Smooth scroll from hero to form
+    document.getElementById("scrollToForm").addEventListener("click", () => {
+      document.getElementById("reservation").scrollIntoView({ behavior: "smooth" });
+    });
+
+    const form = document.getElementById("reservationForm");
+    const submitBtn = document.getElementById("submitBtn");
+    const toast = document.getElementById("toast");
+    const toastMessage = document.getElementById("toastMessage");
+    const toastIcon = document.getElementById("toastIcon");
+
+    function showToast(message, type = "success") {
+      toastMessage.textContent = message;
+      toast.classList.remove("success", "error");
+      toast.classList.add(type);
+      toastIcon.textContent = type === "success" ? "✔" : "⚠";
+      toast.classList.add("show");
+      setTimeout(() => toast.classList.remove("show"), 4500);
+    }
+
+    // ✅ Google Form submit endpoint
+    const GOOGLE_FORM_URL =
+      "https://docs.google.com/forms/d/e/1FAIpQLSd0AL92T79U4uMCtC_SG9x8v0PXKdS4Ur1xEe-sIcV4TXogiA/formResponse";
+
+    // ✅ Entry IDs from your pre-filled link
+    const ENTRY = {
+      name: "entry.981785193",
+      email: "entry.103532977",
+      phone: "entry.1554641311",
+      subject: "entry.1975618785",
+      date: "entry.783252072",
+      time: "entry.1881115407",
+      guests: "entry.1076213363",
+      message: "entry.1401158429",
+    };
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      if (!form.checkValidity()) {
+        showToast("Please fill in all required fields.", "error");
+        return;
+      }
+
+      submitBtn.disabled = true;
+      submitBtn.querySelector("span:nth-child(2)").textContent = "Sending…";
+
+      try {
+        const fd = new FormData();
+        fd.append(ENTRY.name, document.getElementById("name").value);
+        fd.append(ENTRY.email, document.getElementById("email").value);
+        fd.append(ENTRY.phone, document.getElementById("phone").value);
+        fd.append(ENTRY.subject, document.getElementById("subject").value);
+        fd.append(ENTRY.date, document.getElementById("date").value); // YYYY-MM-DD
+        fd.append(ENTRY.time, document.getElementById("time").value); // HH:MM
+        fd.append(ENTRY.guests, document.getElementById("guests").value);
+        fd.append(ENTRY.message, document.getElementById("message").value);
+
+        // Google Forms requires no-cors
+        await fetch(GOOGLE_FORM_URL, {
+          method: "POST",
+          mode: "no-cors",
+          body: fd,
+        });
+
+        showToast("Thank you! We’ve received your request.", "success");
+        form.reset();
+      } catch (err) {
+        console.error(err);
+        showToast("Sorry, something went wrong. Please try again.", "error");
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.querySelector("span:nth-child(2)").textContent = "Send Request";
+      }
+    });
+  </script> -->
+  <!-- TOAST -->
+  <div id="toast" class="toast">
+    <span class="toast-icon" id="toastIcon">✉</span>
+    <span id="toastMessage"></span>
+  </div>
+
+  <script src="./assets/js/script.js"></script>
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+  <script>
+    (() => {
+      // Smooth scroll from hero to form
+      const scrollBtn = document.getElementById("scrollToForm");
+      const reservationSection = document.getElementById("reservation");
+      if (scrollBtn && reservationSection) {
+        scrollBtn.addEventListener("click", () => {
+          reservationSection.scrollIntoView({ behavior: "smooth", block: "start" });
+        });
+      }
+
+      const form = document.getElementById("reservationForm");
+      const submitBtn = document.getElementById("submitBtn");
+      const toast = document.getElementById("toast");
+      const toastMessage = document.getElementById("toastMessage");
+      const toastIcon = document.getElementById("toastIcon");
+
+      if (!form || !submitBtn || !toast || !toastMessage || !toastIcon) return;
+
+      function showToast(message, type = "success") {
+        toastMessage.textContent = message;
+        toast.classList.remove("success", "error");
+        toast.classList.add(type);
+        toastIcon.textContent = type === "success" ? "✔" : "⚠";
+        toast.classList.add("show");
+        setTimeout(() => toast.classList.remove("show"), 4500);
+      }
+
+      // ✅ Your form is /forms/d/....../edit, so use /d/FORM_ID/formResponse
+      const GOOGLE_FORM_URL =
+        "https://docs.google.com/forms/d/e/1FAIpQLSd0AL92T79U4uMCtC_SG9x8v0PXKdS4Ur1xEe-sIcV4TXogiA/formResponse";
+
+      // ✅ Replace these with the REAL entry IDs from your "prefilled link"
+      const ENTRY = {
+        name: "entry.981785193",
+        email: "entry.103532977",
+        phone: "entry.1554641311",
+        subject: "entry.1975618785",
+        date: "entry.783252072",
+        time: "entry.1881115407",
+        guests: "entry.1076213363",
+        message: "entry.1401158429",
+      };
+
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        if (!form.checkValidity()) {
+          showToast("Please fill in all required fields.", "error");
+          return;
+        }
+
+        submitBtn.disabled = true;
+        const labelSpan = submitBtn.querySelector("span:nth-child(2)");
+        if (labelSpan) labelSpan.textContent = "Sending…";
+
+        try {
+          const fd = new FormData();
+          // fd.append(ENTRY.nameскийM, document.getElementById("name").value.trim());
+          fd.append(ENTRY.name, document.getElementById("name").value.trim());
+          fd.append(ENTRY.email, document.getElementById("email").value.trim());
+          fd.append(ENTRY.phone, document.getElementById("phone").value.trim());
+          fd.append(ENTRY.subject, document.getElementById("subject").value);
+          fd.append(ENTRY.date, document.getElementById("date").value);
+          fd.append(ENTRY.time, document.getElementById("time").value);
+          fd.append(ENTRY.guests, document.getElementById("guests").value);
+          fd.append(ENTRY.message, document.getElementById("message").value.trim());
+
+          await fetch(GOOGLE_FORM_URL, {
+            method: "POST",
+            mode: "no-cors",
+            body: fd,
+          });
+
+          showToast("Thank you! We’ve received your request.", "success");
+          form.reset();
+        } catch (err) {
+          console.error(err);
+          showToast("Sorry, something went wrong. Please try again.", "error");
+        } finally {
+          submitBtn.disabled = false;
+          if (labelSpan) labelSpan.textContent = "Send Request";
+        }
+      });
+    })();
+  </script>
+  <script>
+    (() => {
+      const footer = document.getElementById("pageFooter");
+      if (!footer) return;
+
+      // Calculate the maximum allowed scrollTop so the footer bottom aligns with viewport bottom
+      const getMaxScroll = () => {
+        const footerRect = footer.getBoundingClientRect();
+        const footerTopOnPage = footerRect.top + window.pageYOffset;
+        const footerBottomOnPage = footerTopOnPage + footer.offsetHeight;
+        return Math.max(0, footerBottomOnPage - window.innerHeight);
+      };
+
+      let maxScroll = 0;
+      let ticking = false;
+
+      const recalc = () => {
+        maxScroll = getMaxScroll();
+        clamp(); // clamp immediately after recalculating
+      };
+
+      const clamp = () => {
+        const current = window.pageYOffset || document.documentElement.scrollTop || 0;
+        if (current > maxScroll) {
+          window.scrollTo({ top: maxScroll, left: 0, behavior: "auto" });
+        }
+      };
+
+      const onScroll = () => {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(() => {
+          clamp();
+          ticking = false;
+        });
+      };
+
+      // Recalc after everything loads (images/fonts can change heights)
+      window.addEventListener("load", recalc);
+      window.addEventListener("resize", recalc);
+
+      // Also observe footer size changes (in case layout shifts)
+      if ("ResizeObserver" in window) {
+        const ro = new ResizeObserver(recalc);
+        ro.observe(footer);
+      }
+
+      window.addEventListener("scroll", onScroll, { passive: true });
+
+      // Initial set
+      recalc();
+    })();
+  </script>
+
 
 </body>
 
